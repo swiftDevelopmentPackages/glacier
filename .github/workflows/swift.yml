@@ -17,6 +17,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build
-      run: swift build -v
+      run: xcodebuild -scheme glacier -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' build
     - name: Run tests
-      run: swift test -v
+      run: xcodebuild -scheme glacier -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' test
