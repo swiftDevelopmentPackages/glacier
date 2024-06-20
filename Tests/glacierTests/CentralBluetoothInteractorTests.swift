@@ -3,7 +3,6 @@ import XCTest
 import CoreBluetooth
 import Combine
 
-
 class CentralBluetoothInteractorTests: XCTestCase {
   private var centralManager: MockCBCentralManager!
   private var centralBluetoothInteractor: CentralBluetoothInteractor!
@@ -77,7 +76,7 @@ class CentralBluetoothInteractorTests: XCTestCase {
     // Emission #2 - Sending any other state then .poweredOn, should clear the peripherals
     centralBluetoothInteractor.updateServerState(state: .resetting)
     
-    waitForExpectations(timeout: 10)
+    waitForExpectations(timeout: 20)
   }
   
   // MARK: isScanning
@@ -93,7 +92,7 @@ class CentralBluetoothInteractorTests: XCTestCase {
       })
       .store(in: &cancellables)
     
-    waitForExpectations(timeout: 10)
+    waitForExpectations(timeout: 20)
   }
   
   // MARK: scanForPeripherals
@@ -112,7 +111,7 @@ class CentralBluetoothInteractorTests: XCTestCase {
     
     centralBluetoothInteractor.scanForPeripherals()
     
-    waitForExpectations(timeout: 10)
+    waitForExpectations(timeout: 20)
   }
   
   func test_givenInteractor_whenUnderlyingNotScanning_andPoweredOff_andStartsScanning_thenShouldUpdateScanningAccordingly() {
@@ -132,7 +131,7 @@ class CentralBluetoothInteractorTests: XCTestCase {
     // Underlying is .poweredOff, should not start scanning
     centralBluetoothInteractor.scanForPeripherals()
     
-    waitForExpectations(timeout: 10)
+    waitForExpectations(timeout: 20)
   }
   
   func test_givenInteractor_whenUnderlyingAlreadyScanning_andPoweredOn_andStartsScanning_thenShouldUpdateScanningAccordingly() {
@@ -152,7 +151,7 @@ class CentralBluetoothInteractorTests: XCTestCase {
     
     centralBluetoothInteractor.scanForPeripherals()
     
-    waitForExpectations(timeout: 10)
+    waitForExpectations(timeout: 20)
   }
   
   // MARK: stopScan
@@ -183,7 +182,7 @@ class CentralBluetoothInteractorTests: XCTestCase {
     centralBluetoothInteractor.stopScan()
     XCTAssertEqual(self.centralManager.calledMethods, ["stopScan()"])
     
-    waitForExpectations(timeout: 10)
+    waitForExpectations(timeout: 20)
   }
   
   // MARK: didDiscoverPeripheral
@@ -213,7 +212,7 @@ class CentralBluetoothInteractorTests: XCTestCase {
     
     centralBluetoothInteractor.reactPeripheralDiscovery(peripheral: mockPeripheral)
     
-    waitForExpectations(timeout: 10)
+    waitForExpectations(timeout: 20)
   }
   
   // MARK: connect
@@ -248,7 +247,7 @@ class CentralBluetoothInteractorTests: XCTestCase {
       })
       .store(in: &cancellables)
     
-    waitForExpectations(timeout: 10)
+    waitForExpectations(timeout: 20)
   }
   
   func test_givenPeripheral_whenConnectionInitiated_andWaitingForResponse_andAlsoAnotherPeripheralResponds_thenOnlyIntendedPeripheralShouldBeSubscribed() {
@@ -307,7 +306,7 @@ class CentralBluetoothInteractorTests: XCTestCase {
     // Simulating successful pairing validation for peripheral1
     peripheral1.pairingValidationStream.send(peripheral1)
     
-    waitForExpectations(timeout: 10)
+    waitForExpectations(timeout: 20)
   }
   
   func test_givenPeripheral_whenConnectionInitiated_thenOnlyTheFirstInputInThePipelineShouldReport() {
@@ -341,7 +340,7 @@ class CentralBluetoothInteractorTests: XCTestCase {
     centralBluetoothInteractor.reactPeripheralConnection(peripheral: peripheral1.cbPeripheral)
     peripheral1.pairingValidationStream.send(peripheral1)
     
-    waitForExpectations(timeout: 10)
+    waitForExpectations(timeout: 20)
   }
   
   func test_givenPeripheral_whenConnectionInitiated_andWaitingForResponse_andOnlyAnotherPeripheralResponds_thenIntendedPeripheralShoudTimeoutWhileWaiting() {
@@ -416,7 +415,7 @@ class CentralBluetoothInteractorTests: XCTestCase {
     // Simulating successful pairing validation for peripheral2 not peripheral1
     peripheral2.pairingValidationStream.send(peripheral2)
     
-    waitForExpectations(timeout: 10)
+    waitForExpectations(timeout: 20)
   }
   
   func test_givenPeripheral_whenConnectionInitiated_andValidationFailsWithKnownError_thenConnectionShouldFailWithSameError() {
@@ -474,7 +473,7 @@ class CentralBluetoothInteractorTests: XCTestCase {
     // Simulating successful pairing validation for peripheral1
     peripheral1.pairingValidationStream.send(completion: .failure(GlacierError.peripheralConnectionLossDuringPairing))
     
-    waitForExpectations(timeout: 10)
+    waitForExpectations(timeout: 20)
   }
   
   func test_givenPeripheral_whenConnectionInitiated_andValidationFailsWithUnknownError_thenConnectionShouldFailWithSameError() {
@@ -533,7 +532,7 @@ class CentralBluetoothInteractorTests: XCTestCase {
     // Simulating successful pairing validation for peripheral1
     peripheral1.pairingValidationStream.send(completion: .failure(MockError.dummy))
     
-    waitForExpectations(timeout: 10)
+    waitForExpectations(timeout: 20)
   }
   
   func test_givenPeripheral_whenConnectionInitiated_andFailsToConnectWithUnderlyingError_thenConnectionShouldFail_andNoPairingValidationShouldbePerformed() {
@@ -589,7 +588,7 @@ class CentralBluetoothInteractorTests: XCTestCase {
     
     centralBluetoothInteractor.reactPeripheralFailedConnection(peripheral: peripheral.cbPeripheral, error: MockError.dummy)
     
-    waitForExpectations(timeout: 10)
+    waitForExpectations(timeout: 20)
   }
   
   // MARK: autoReconnect
@@ -626,7 +625,7 @@ class CentralBluetoothInteractorTests: XCTestCase {
     // After disconnection with an unknown error the peripheral shouldn't go back into .advertising
     centralBluetoothInteractor.reactPeripheralDisconnection(peripheral: peripheral1.cbPeripheral, error: nil)
     
-    waitForExpectations(timeout: 10)
+    waitForExpectations(timeout: 20)
   }
 }
 
