@@ -256,7 +256,7 @@ class CentralBluetoothInteractorTests: XCTestCase {
     expectation.expectedFulfillmentCount = 3
     
     let peripheral1 = MockPeripheral.dummyPeripheral(identifier: "00000000-0000-0000-0000-000000000000")
-    let peripheral2 = MockPeripheral.dummyPeripheral(identifier: "00000000-0000-0000-0000-000000000000")
+    let peripheral2 = MockPeripheral.dummyPeripheral(identifier: "10000000-0000-0000-0000-000000000000")
 
     // ------- Subscriptions --------
     
@@ -354,7 +354,7 @@ class CentralBluetoothInteractorTests: XCTestCase {
       options: MockInteractorOptions(autoReconnectTimeout: 30, initialDiscoveryTimeout: 1) //Test timeout has to be greater than this!
     )
     let peripheral1 = MockPeripheral.dummyPeripheral(identifier: "00000000-0000-0000-0000-000000000000")
-    let peripheral2 = MockPeripheral.dummyPeripheral(identifier: "00000000-0000-0000-0000-000000000000")
+    let peripheral2 = MockPeripheral.dummyPeripheral(identifier: "10000000-0000-0000-0000-000000000000")
 
     // ------- Subscriptions --------
     
@@ -424,7 +424,7 @@ class CentralBluetoothInteractorTests: XCTestCase {
     expectation.expectedFulfillmentCount = 3
     
     let peripheral1 = MockPeripheral.dummyPeripheral(identifier: "00000000-0000-0000-0000-000000000000")
-    let peripheral2 = MockPeripheral.dummyPeripheral(identifier: "00000000-0000-0000-0000-000000000000")
+    let peripheral2 = MockPeripheral.dummyPeripheral(identifier: "10000000-0000-0000-0000-000000000000")
 
     // ------- Subscriptions --------
     
@@ -482,7 +482,7 @@ class CentralBluetoothInteractorTests: XCTestCase {
     expectation.expectedFulfillmentCount = 3
     
     let peripheral1 = MockPeripheral.dummyPeripheral(identifier: "00000000-0000-0000-0000-000000000000")
-    let peripheral2 = MockPeripheral.dummyPeripheral(identifier: "00000000-0000-0000-0000-000000000000")
+    let peripheral2 = MockPeripheral.dummyPeripheral(identifier: "10000000-0000-0000-0000-000000000000")
 
     // ------- Subscriptions --------
     
