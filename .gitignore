@@ -46,6 +46,9 @@ playground.xcworkspace
 # hence it is not needed unless you have added a package configuration file to your project
 # .swiftpm
 
+.swiftpm/configuration/registries.json
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+
 .build/
 
 # CocoaPods
