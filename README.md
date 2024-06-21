@@ -1,4 +1,3 @@
-![CI](https://github.com/swiftDevelopmentPackages/glacier/actions/workflows/swift.yml/badge.svg?branch=main)
 ![iOS](https://img.shields.io/badge/iOS-14.0+-blue)
 
 # glacier
